@@ -52,7 +52,6 @@ export default defineComponent({
       },
     ]);
     let selectEvent = (node) => {
-      console.log("selected", node);
       activeKey.value = node.fVcUuid;
     };
     let expandEvent = () => {

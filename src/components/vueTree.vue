@@ -21,7 +21,6 @@ let isLeaf = (node) => {
 const Expand = (item) => {
   item.expand = !item.expand;
   emit("onExpand", item);
-  console.log("e");
 };
 
 const selectEvent = (item, ev) => {
