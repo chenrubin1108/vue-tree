@@ -4,7 +4,7 @@
 import { reactive, toRefs, ref } from "vue";
 import vueTree from "../components/vueTree";
 const props = defineProps({
-  datas: {
+  treeData: {
     default: [],
   },
   selectedKey: {
@@ -38,7 +38,7 @@ const selectEvent = (item) => {
       ]"
       class="TreeNode"
       @click.stop="selectEvent(item)"
-      v-for="item in datas"
+      v-for="item in treeData"
       :key="item.fVcUuid"
     >
       <button @click.stop="Expand(item)">
@@ -52,7 +52,7 @@ const selectEvent = (item) => {
         @onExpend="Expand"
         :selectedKey="selectedKey"
         v-if="!isLeaf(item) && item.expand"
-        :datas="item.children"
+        :treeData="item.children"
       ></vueTree>
     </div>
   </div>

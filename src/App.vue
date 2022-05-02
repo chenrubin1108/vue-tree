@@ -1,10 +1,10 @@
 <template>
   <vueTree
-    v-if="treeData.length != 0"
+    v-if="treeData.length !== 0"
     @onSelect="selectEvent"
     @onExpand="expandEvent"
     :selectedKey="activeKey"
-    :datas="treeData"
+    :treeData="treeData"
   ></vueTree>
 </template>
 
