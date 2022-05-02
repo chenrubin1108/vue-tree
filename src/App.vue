@@ -1,6 +1,6 @@
 <template>
   <vueTree
-    v-if="treeData.length !== 0"
+    v-if="treeData.length != 0"
     @onSelect="selectEvent"
     @onExpand="expandEvent"
     :selectedKey="activeKey"
@@ -52,6 +52,7 @@ export default defineComponent({
       },
     ]);
     let selectEvent = (node) => {
+      console.log("selected", node);
       activeKey.value = node.fVcUuid;
     };
     let expandEvent = () => {

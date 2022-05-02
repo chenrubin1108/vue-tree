@@ -62,7 +62,9 @@ const selectEvent = (item) => {
 .ParentLeaf > .container-Tree {
   margin-left: 16px;
 }
-
+.TreeNode {
+  color: initial;
+}
 button {
   min-width: 25px;
 }
