@@ -22,7 +22,7 @@ const Expand = (item) => {
 
 const selectEvent = (item, ev) => {
   emit("onSelect", item);
-  console.log("执行了");
+  console.log(1);
 };
 </script>
 <template>
@@ -44,8 +44,8 @@ const selectEvent = (item, ev) => {
       {{ item.fVcName }}
 
       <vueTree
-        @onSelect="selectEvent"
         @onExpend="Expand"
+        @onSelect="selectEvent"
         :selectedKey="selectedKey"
         v-if="!isLeaf(item) && item.expand"
         :treeData="item.children"
