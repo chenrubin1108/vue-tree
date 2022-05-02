@@ -44,7 +44,7 @@ const selectEvent = (item, ev) => {
       {{ item.fVcName }}
 
       <vueTree
-        @onSelect.once="selectEvent"
+        @onSelect="selectEvent"
         @onExpend="Expand"
         :selectedKey="selectedKey"
         v-if="!isLeaf(item) && item.expand"
