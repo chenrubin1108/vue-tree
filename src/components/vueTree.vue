@@ -21,8 +21,10 @@ let isLeaf = (node) => {
 const Expand = (item) => {
   item.expand = !item.expand;
   emit("onExpand", item);
+  console.log("e");
 };
-const selectEvent = (item) => {
+
+const selectEvent = (item, ev) => {
   clearTimeout(timer.value);
   timer.value = setTimeout(() => {
     emit("onSelect", item);
@@ -37,7 +39,7 @@ const selectEvent = (item) => {
         selectedKey === item.fVcUuid ? 'active' : '',
       ]"
       class="TreeNode"
-      @click.stop="selectEvent(item)"
+      @click.stop="selectEvent(item, $event)"
       v-for="item in treeData"
       :key="item.fVcUuid"
     >
