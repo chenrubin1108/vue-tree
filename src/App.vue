@@ -1,26 +1,66 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <vueTree
+    v-if="treeData.length != 0"
+    @onSelect="selectEvent"
+    @onExpand="expandEvent"
+    :selectedKey="activeKey"
+    :datas="treeData"
+  ></vueTree>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
+import { reactive, toRefs, ref, defineComponent } from "vue";
+import vueTree from "./components/vueTree.vue";
+export default defineComponent({
   components: {
-    HelloWorld
-  }
-}
+    vueTree,
+  },
+  setup() {
+    let activeKey = ref(null);
+    let treeData = reactive([
+      {
+        fVcName: "chenrubin",
+        fVcUuid: 1,
+        children: [
+          {
+            fVcName: "张三",
+            fVcUuid: 2,
+            children: [
+              {
+                fVcName: "儿子",
+                fVcUuid: 9,
+                children: [
+                  {
+                    fVcName: "儿子66",
+                    fVcUuid: 12,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            fVcName: "678111",
+            fVcUuid: 3,
+            children: [],
+          },
+        ],
+      },
+      {
+        fVcName: "binbin",
+        fVcUuid: 4,
+        children: [],
+      },
+    ]);
+    let selectEvent = (node) => {
+      activeKey.value = node.fVcUuid;
+    };
+    let expandEvent = () => {
+      console.log("扩展事件");
+    };
+    return { expandEvent, activeKey, selectEvent, treeData };
+  },
+});
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
