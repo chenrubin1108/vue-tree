@@ -1,5 +1,3 @@
-
-
 <script setup >
 import { reactive, toRefs, ref } from "vue";
 import vueTree from "../components/vueTree";
@@ -13,7 +11,6 @@ const props = defineProps({
   },
 });
 const emit = defineEmits(["onExpand", "onSelect", "onExpend"]);
-const timer = ref(null);
 const { selectedKey } = toRefs(props);
 let isLeaf = (node) => {
   return !node.children?.length;
@@ -24,10 +21,8 @@ const Expand = (item) => {
 };
 
 const selectEvent = (item, ev) => {
-  clearTimeout(timer.value);
-  timer.value = setTimeout(() => {
-    emit("onSelect", item);
-  }, 0);
+  emit("onSelect", item);
+  console.log("执行了");
 };
 </script>
 <template>
@@ -49,7 +44,7 @@ const selectEvent = (item, ev) => {
       {{ item.fVcName }}
 
       <vueTree
-        @onSelect="selectEvent"
+        @onSelect.once="selectEvent"
         @onExpend="Expand"
         :selectedKey="selectedKey"
         v-if="!isLeaf(item) && item.expand"
